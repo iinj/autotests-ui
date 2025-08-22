@@ -1,11 +1,11 @@
 from components.base_component import BaseComponent
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
 
 from elements.image import Image
 from elements.text import Text
 
 
-class ChartVieпшеwComponent(BaseComponent):
+class ChartViewComponent(BaseComponent):
     def __init__(self, page: Page, identifier: str, chart_type: str):
         super().__init__(page)
 
