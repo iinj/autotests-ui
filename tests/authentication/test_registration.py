@@ -1,4 +1,10 @@
 import pytest
+import allure
+from tools.allure.tags import AllureTag
+from tools.allure.epics import AllureEpic
+from tools.allure.features import AllureFeature
+from tools.allure.stories import AllureStory
+from allure_commons.types import Severity
 
 from fixtures.pages import registration_page, dashboard_page
 from pages.authentication.registration_page import RegistrationPage
@@ -8,7 +14,13 @@ from pages.dashboard.dashboard_page import DashboardPage
 @pytest.mark.regression
 @pytest.mark.registration
 @pytest.mark.parametrize('email, username, password', [('user.name@gmail.com', 'username', 'password')])
+@allure.tag(AllureTag.REGRESSION, AllureTag.REGISTRATION)
+@allure.epic(AllureEpic.LMS)
+@allure.feature(AllureFeature.AUTHENTICATION)
+@allure.story(AllureStory.REGISTRATION)
 class TestRegistration:
+    @allure.title('Registration with correct email, username and password')
+    @allure.severity(Severity.BLOCKER)
     def test_successful_registration(self, registration_page: RegistrationPage, dashboard_page: DashboardPage,
                                      email: str,
                                      username: str, password: str):
