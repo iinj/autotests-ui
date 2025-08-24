@@ -1,5 +1,7 @@
 import pytest
 import allure
+
+from config import settings
 from tools.allure.tags import AllureTag
 from tools.allure.epics import AllureEpic
 from tools.allure.features import AllureFeature
@@ -39,7 +41,7 @@ class TestCourses:
         create_course_page.create_course_exercises_toolbar_view.check_visible()
         create_course_page.check_visible_exercises_empty_view()
 
-        create_course_page.image_upload_widget.upload_preview_image('testdata/files/image_1.jpg')
+        create_course_page.image_upload_widget.upload_preview_image(settings.test_data.image_jpg_file)
         create_course_page.image_upload_widget.check_visible(is_image_uploaded=True)
         create_course_page.create_course_form.fill(
             title='Playwright',
@@ -74,7 +76,7 @@ class TestCourses:
     @allure.severity(Severity.NORMAL)
     def test_edit_course(self, create_course_page: CreateCoursePage, courses_list_page: CoursesListPage):
         create_course_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create')
-        create_course_page.image_upload_widget.upload_preview_image('testdata/files/image_1.jpg')
+        create_course_page.image_upload_widget.upload_preview_image(settings.test_data.image_jpg_file)
         create_course_page.image_upload_widget.check_visible(is_image_uploaded=True)
         create_course_page.create_course_form.fill(
             title='Playwright',
